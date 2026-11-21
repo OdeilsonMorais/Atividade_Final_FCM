@@ -1,0 +1,9 @@
+Relação entre marcos científicos e crescimento da área
+
+A evolução das publicações científicas foi analisada por meio de duas tendências lineares, considerando os períodos de 2000 a 2013 e de 2014 a 2025. Essa divisão teve como objetivo verificar se houve mudanças no ritmo de crescimento da produção científica após o marco de 2014.
+
+No primeiro período, a inclinação da reta foi de 0,06 publicação por ano, com R² de 0,0531, indicando uma produção ainda reduzida e sem uma tendência linear de crescimento bem definida.
+
+Já no período de 2014 a 2025, a inclinação aumentou para 36,78 publicações por ano, com R² de 0,8412. Esse resultado indica um crescimento mais acentuado e uma tendência linear mais consistente da produção científica.
+
+Dessa forma, os resultados mostram uma mudança expressiva no ritmo de crescimento das publicações a partir de 2014. Entretanto, essa relação não permite afirmar que o marco científico desse ano foi o responsável pelo aumento, mas indica uma associação temporal entre esse período e a expansão da produção científica na área.

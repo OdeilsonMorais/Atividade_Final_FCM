@@ -1,0 +1,9 @@
+Impacto científico da produção
+
+A análise do impacto científico foi realizada considerando os 1.513 documentos identificados na busca da Scopus. Para comparar artigos publicados em anos diferentes, foi calculada a taxa média anual de citações, dividindo-se o número total de citações de cada documento pela diferença entre 2026 e seu ano de publicação.
+
+Os resultados apresentaram uma média de 16,07 citações anualizadas por artigo e uma mediana de 9,00. A diferença entre esses valores indica que a distribuição das citações não é uniforme, pois alguns artigos apresentam taxas bastante elevadas e influenciam a média geral.
+
+Entre os documentos com maiores taxas anualizadas, destacam-se os trabalhos de Raman et al. (2014), com 297,25 citações por ano, Mandal et al. (2018), com 276,75, e Zhai et al. (2017), com aproximadamente 266,33.
+
+Esses resultados mostram que determinados trabalhos tiveram grande repercussão na área de resfriamento radiativo passivo, considerando o número de citações em relação ao tempo desde sua publicação.

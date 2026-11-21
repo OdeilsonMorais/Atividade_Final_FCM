@@ -1,0 +1,87 @@
+ANÁLISE BIBLIOMÉTRICA – RESFRIAMENTO RADIATIVO PASSIVO
+Responsável: Mariane
+
+Este diretório reúne os resultados das análises bibliométricas realizadas em Python, utilizando os dados exportados da Scopus. O estudo considera a produção científica sobre resfriamento radiativo passivo no período de 2000 a 2025.
+
+As atividades desenvolvidas correspondem a dois pontos do planejamento do trabalho:
+
+
+==================================================
+1. IMPACTO CIENTÍFICO
+==================================================
+
+Foi calculada a taxa média anual de citações de cada artigo, considerando o número de citações e o ano de publicação. O objetivo foi reduzir a influência do tempo de publicação na comparação entre os documentos.
+
+Fórmula utilizada:
+
+Ii = Ci / (2026 - Ai)
+
+Onde:
+- Ii = taxa média anual de citações do artigo;
+- Ci = número de citações do artigo;
+- Ai = ano de publicação.
+
+RESULTADOS GERAIS:
+
+- Total de artigos analisados: 1.513
+- Média de impacto anualizado: 16,07
+- Mediana de impacto anualizado: 9,00
+
+ARQUIVOS GERADOS:
+
+- impacto_por_artigo.csv: contém todos os artigos analisados e suas respectivas taxas anualizadas de citações.
+- top20_impacto.csv: apresenta os 20 artigos com maiores taxas anualizadas.
+
+
+
+==================================================
+2. RELAÇÃO ENTRE MARCOS CIENTÍFICOS E CRESCIMENTO DA ÁREA
+==================================================
+
+Foi realizada uma comparação entre as tendências de crescimento das publicações nos períodos de 2000 a 2013 e de 2014 a 2025, utilizando ajustes lineares.
+
+RESULTADOS OBTIDOS:
+
+Período de 2000 a 2013:
+- Inclinação da reta: 0,06 publicação por ano.
+- R²: 0,0531.
+
+Período de 2014 a 2025:
+- Inclinação da reta: 36,78 publicações por ano.
+- R²: 0,8412.
+
+Os resultados indicam uma mudança expressiva no ritmo de crescimento das publicações após 2014. Entretanto, essa associação temporal não permite afirmar que o marco científico desse ano tenha causado o crescimento observado.
+
+ARQUIVOS GERADOS:
+
+- grafico_crescimento.png: apresenta a evolução das publicações e as tendências lineares dos dois períodos.
+- tendencias_crescimento.csv: contém os valores das inclinações e dos coeficientes R².
+
+
+
+==================================================
+3. CÓDIGOS PYTHON UTILIZADOS
+==================================================
+
+Os scripts utilizados estão organizados na pasta "códigos":
+
+- 01_conferencia_dados.py: realiza a conferência inicial dos dados exportados.
+- 02_publicacoes_por_ano.py: contabiliza a quantidade de publicações por ano.
+- 03_grafico_crescimento.py: realiza a análise das tendências de crescimento e gera o gráfico.
+- 04_impacto_cientifico.py: calcula a taxa média anual de citações dos artigos.
+
+
+
+==================================================
+4. INFORMAÇÕES METODOLÓGICAS
+==================================================
+
+- Base de dados utilizada: Scopus.
+- Estratégia de busca: "passive radiative cooling" OR "daytime radiative cooling".
+- Período analisado: 2000 a 2025.
+- Total de documentos encontrados: 1.513.
+- Ano de referência utilizado no cálculo das citações: 2026.
+- Linguagem de programação: Python.
+- Bibliotecas utilizadas: Pandas, NumPy e Matplotlib.
+
+Este material reúne os procedimentos e resultados referentes às duas análises desenvolvidas, permitindo que os demais integrantes do grupo consultem os códigos e compreendam os resultados obtidos.
