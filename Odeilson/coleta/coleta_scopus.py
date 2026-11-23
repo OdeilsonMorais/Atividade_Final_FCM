@@ -19,7 +19,7 @@ from pathlib import Path
 import requests
 
 URL = "https://api.elsevier.com/content/search/scopus"
-DADOS = Path(__file__).resolve().parent / "dados"
+DADOS = Path(__file__).resolve().parent.parent.parent / "dados"
 
 TERMOS = [
     "passive radiative cooling",
