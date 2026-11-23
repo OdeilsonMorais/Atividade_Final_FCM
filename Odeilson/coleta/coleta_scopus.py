@@ -50,7 +50,7 @@ QUERY_G_EXCLUIDOS = ("(TITLE-ABS-KEY(" + " OR ".join(f'"{t}"' for t in TERMOS + 
 BUSCAS = {"A": QUERY_PADRAO, "G": QUERY_G, "G_excluidos": QUERY_G_EXCLUIDOS}
 
 COLUNAS = [
-    "eid", "doi", "titulo", "ano", "data_capa", "revista", "tipo_doc",
+    "eid", "doi", "titulo", "autores", "ano", "data_capa", "revista", "tipo_doc",
     "citacoes", "paises", "n_paises", "fund_sponsor", "fund_acr", "fund_no",
     "palavras_chave_autor",
 ]
@@ -81,11 +81,18 @@ def requisitar(params, h, tentativas=5):
 def extrair(e):
     afils = e.get("affiliation") or []
     paises = sorted({a.get("affiliation-country") for a in afils if a.get("affiliation-country")})
+    autores_raw = e.get("author") or []
+    if isinstance(autores_raw, dict):
+        autores_raw = [autores_raw]
+    autores = "; ".join(a.get("authname", "") for a in autores_raw if a.get("authname"))
+    if not autores:
+        autores = e.get("dc:creator", "")
     data = e.get("prism:coverDate", "")
     return {
         "eid": e.get("eid", ""),
         "doi": e.get("prism:doi", ""),
         "titulo": e.get("dc:title", ""),
+        "autores": autores,
         "ano": data[:4],
         "data_capa": data,
         "revista": e.get("prism:publicationName", ""),

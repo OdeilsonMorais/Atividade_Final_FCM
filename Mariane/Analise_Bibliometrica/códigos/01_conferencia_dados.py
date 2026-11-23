@@ -11,10 +11,10 @@ from pathlib import Path
 
 # Localização dos arquivos
 pasta = Path(__file__).resolve().parent.parent
-arquivo = pasta / "dados" / "dadosexportados.csv"
+arquivo = pasta.parent.parent / "dados" / "artigos_scopus_G.csv"
 
 # Leitura dos dados
-df = pd.read_csv(arquivo)
+df = pd.read_csv(arquivo, encoding="utf-8-sig")
 
 # Conferência inicial
 print("Quantidade de documentos:", len(df))
@@ -23,11 +23,10 @@ print("\nColunas disponíveis:")
 print(df.columns.tolist())
 
 print("\nPeríodo das publicações:")
-print(df["Year"].min(), "-", df["Year"].max())
+print(df["ano"].min(), "-", df["ano"].max())
 
 print("\nPrimeiros artigos:")
-print(df[["Title", "Year", "Cited by"]].head())
+print(df[["titulo", "ano", "citacoes"]].head())
 
 print("\nDados ausentes:")
-print(df[["Year", "Cited by", "Affiliations",
-          "Funding Details"]].isna().sum())
+print(df[["ano", "citacoes", "autores", "paises", "fund_sponsor"]].isna().sum())

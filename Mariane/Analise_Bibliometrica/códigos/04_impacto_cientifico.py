@@ -4,23 +4,23 @@
 import pandas as pd
 from pathlib import Path
 
-# Localiza as pastas do projeto
+# Localiza as pastas e o arquivo CSV
 pasta = Path(__file__).resolve().parent.parent
+arquivo = pasta.parent.parent / "dados" / "artigos_scopus_G.csv"
 
 # Lê os dados exportados da Scopus
-arquivo = pasta / "dados" / "dadosexportados.csv"
-df = pd.read_csv(arquivo)
+df = pd.read_csv(arquivo, encoding="utf-8-sig")
 
 # Garante que ano e citações sejam valores numéricos
-df["Year"] = pd.to_numeric(df["Year"], errors="coerce")
-df["Cited by"] = pd.to_numeric(df["Cited by"], errors="coerce")
+df["ano"] = pd.to_numeric(df["ano"], errors="coerce")
+df["citacoes"] = pd.to_numeric(df["citacoes"], errors="coerce")
 
 # Remove registros sem ano ou número de citações
-df = df.dropna(subset=["Year", "Cited by"]).copy()
+df = df.dropna(subset=["ano", "citacoes"]).copy()
 
 # Calcula a taxa anualizada de citações
 df["Impacto anualizado"] = (
-    df["Cited by"] / (2026 - df["Year"])
+    df["citacoes"] / (2026 - df["ano"])
 )
 
 # Ii= Ci/ (2026 - Ai), sendo:
@@ -38,10 +38,10 @@ df = df.sort_values(
 # Seleciona as informações principais
 resultado = df[
     [
-        "Authors",
-        "Title",
-        "Year",
-        "Cited by",
+        "autores",
+        "titulo",
+        "ano",
+        "citacoes",
         "Impacto anualizado"
     ]
 ].copy()

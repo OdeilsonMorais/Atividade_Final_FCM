@@ -7,13 +7,13 @@ from pathlib import Path
 
 # Localiza as pastas e o arquivo CSV
 pasta = Path(__file__).resolve().parent.parent
-arquivo = pasta / "dados" / "dadosexportados.csv"
+arquivo = pasta.parent.parent / "dados" / "artigos_scopus_G.csv"
 
 # Lê os dados exportados da Scopus
-df = pd.read_csv(arquivo)
+df = pd.read_csv(arquivo, encoding="utf-8-sig")
 
 # Conta as publicações por ano
-publicacoes = df.groupby("Year").size()
+publicacoes = df.groupby("ano").size()
 
 # Cria todos os anos de 2000 a 2025
 todos_os_anos = range(2000, 2026)
