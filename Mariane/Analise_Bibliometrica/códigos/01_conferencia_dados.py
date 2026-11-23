@@ -19,6 +19,9 @@ df = pd.read_csv(arquivo, encoding="utf-8-sig")
 # Conferência inicial
 print("Quantidade de documentos:", len(df))
 
+print("\nTipos de documento (as análises usam só Article e Review):")
+print(df["tipo_doc"].value_counts())
+
 print("\nColunas disponíveis:")
 print(df.columns.tolist())
 

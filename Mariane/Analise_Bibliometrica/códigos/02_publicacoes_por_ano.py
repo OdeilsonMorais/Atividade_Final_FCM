@@ -1,5 +1,5 @@
 #Teste
-#calcular a média de citações por ano de cada publicação.
+#contar as publicações (artigos e revisões) por ano.
 
 
 import pandas as pd
@@ -11,6 +11,12 @@ arquivo = pasta.parent.parent / "dados" / "artigos_scopus_G.csv"
 
 # Lê os dados exportados da Scopus
 df = pd.read_csv(arquivo, encoding="utf-8-sig")
+
+# Mantém só artigos e revisões (mesmo critério das análises de Odeilson e Gabriel)
+TIPOS = ["Article", "Review"]
+n_total = len(df)
+df = df[df["tipo_doc"].isin(TIPOS)].copy()
+print(f"Documentos: {n_total} no CSV, {len(df)} após filtrar {TIPOS}")
 
 # Conta as publicações por ano
 publicacoes = df.groupby("ano").size()

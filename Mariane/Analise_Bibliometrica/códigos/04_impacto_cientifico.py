@@ -11,6 +11,12 @@ arquivo = pasta.parent.parent / "dados" / "artigos_scopus_G.csv"
 # Lê os dados exportados da Scopus
 df = pd.read_csv(arquivo, encoding="utf-8-sig")
 
+# Mantém só artigos e revisões (mesmo critério das análises de Odeilson e Gabriel)
+TIPOS = ["Article", "Review"]
+n_total = len(df)
+df = df[df["tipo_doc"].isin(TIPOS)].copy()
+print(f"Documentos: {n_total} no CSV, {len(df)} após filtrar {TIPOS}")
+
 # Garante que ano e citações sejam valores numéricos
 df["ano"] = pd.to_numeric(df["ano"], errors="coerce")
 df["citacoes"] = pd.to_numeric(df["citacoes"], errors="coerce")
