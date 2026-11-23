@@ -1,7 +1,7 @@
 ANÁLISE BIBLIOMÉTRICA – RESFRIAMENTO RADIATIVO PASSIVO
 Responsável: Mariane
 
-Este diretório reúne os resultados das análises bibliométricas realizadas em Python, utilizando os dados exportados da Scopus. O estudo considera a produção científica sobre resfriamento radiativo passivo no período de 2000 a 2025.
+Este diretório reúne os resultados das análises bibliométricas realizadas em Python, utilizando a base unificada do grupo, obtida pela API da Scopus. O estudo considera a produção científica sobre resfriamento radiativo passivo no período de 2000 a 2025.
 
 As atividades desenvolvidas correspondem a dois pontos do planejamento do trabalho:
 
@@ -23,9 +23,9 @@ Onde:
 
 RESULTADOS GERAIS:
 
-- Total de artigos analisados: 1.513
-- Média de impacto anualizado: 16,07
-- Mediana de impacto anualizado: 9,00
+- Total de artigos analisados: 1.840
+- Média de impacto anualizado: 16,61
+- Mediana de impacto anualizado: 10,00
 
 ARQUIVOS GERADOS:
 
@@ -38,24 +38,25 @@ ARQUIVOS GERADOS:
 2. RELAÇÃO ENTRE MARCOS CIENTÍFICOS E CRESCIMENTO DA ÁREA
 ==================================================
 
-Foi realizada uma comparação entre as tendências de crescimento das publicações nos períodos de 2000 a 2013 e de 2014 a 2025, utilizando ajustes lineares.
+Foi realizada uma comparação entre as tendências de crescimento das publicações nos períodos de 2000 a 2013 e de 2014 a 2025. Como o número de publicações após 2014 cresce de forma exponencial, cada período foi ajustado por uma reta em escala logarítmica, ln(N) = k·ano + c. Desse ajuste saem o crescimento anual (e^k − 1) e o tempo de duplicação (ln 2 / k). O ajuste linear foi mantido apenas para comparação.
 
 RESULTADOS OBTIDOS:
 
-Período de 2000 a 2013:
-- Inclinação da reta: 0,06 publicação por ano.
-- R²: 0,0531.
+Período de 2000 a 2013 (33 artigos):
+- Produção pequena e irregular, de 0 a 6 artigos por ano.
+- Ajuste exponencial: R² = 0,08, ou seja, não há tendência definida de crescimento.
 
-Período de 2014 a 2025:
-- Inclinação da reta: 36,78 publicações por ano.
-- R²: 0,8412.
+Período de 2014 a 2025 (1.807 artigos):
+- Crescimento anual: 58% ao ano.
+- Tempo de duplicação: 1,5 ano.
+- R² do ajuste exponencial: 0,984 (contra 0,839 do ajuste linear).
 
 Os resultados indicam uma mudança expressiva no ritmo de crescimento das publicações após 2014. Entretanto, essa associação temporal não permite afirmar que o marco científico desse ano tenha causado o crescimento observado.
 
 ARQUIVOS GERADOS:
 
-- grafico_crescimento.png: apresenta a evolução das publicações e as tendências lineares dos dois períodos.
-- tendencias_crescimento.csv: contém os valores das inclinações e dos coeficientes R².
+- grafico_crescimento.png: apresenta a evolução das publicações e os ajustes exponenciais dos dois períodos, em escala comum e em escala logarítmica.
+- tendencias_crescimento.csv: contém o crescimento anual, o tempo de duplicação e o R² de cada período, além da inclinação e do R² do ajuste linear para comparação.
 
 
 
@@ -65,9 +66,9 @@ ARQUIVOS GERADOS:
 
 Os scripts utilizados estão organizados na pasta "códigos":
 
-- 01_conferencia_dados.py: realiza a conferência inicial dos dados exportados.
-- 02_publicacoes_por_ano.py: contabiliza a quantidade de publicações por ano.
-- 03_grafico_crescimento.py: realiza a análise das tendências de crescimento e gera o gráfico.
+- 01_conferencia_dados.py: realiza a conferência inicial dos dados e mostra os tipos de documento da base.
+- 02_publicacoes_por_ano.py: contabiliza a quantidade de publicações (artigos e revisões) por ano.
+- 03_grafico_crescimento.py: realiza os ajustes de crescimento e gera o gráfico.
 - 04_impacto_cientifico.py: calcula a taxa média anual de citações dos artigos.
 
 
@@ -76,11 +77,12 @@ Os scripts utilizados estão organizados na pasta "códigos":
 4. INFORMAÇÕES METODOLÓGICAS
 ==================================================
 
-- Base de dados utilizada: Scopus.
-- Estratégia de busca: "passive radiative cooling" OR "daytime radiative cooling".
+- Base de dados utilizada: Scopus, coletada pela API (arquivo dados/artigos_scopus_G.csv, busca G descrita no README principal).
 - Período analisado: 2000 a 2025.
-- Total de documentos encontrados: 1.513.
+- Total de documentos na base: 2.154.
+- Documentos analisados: 1.840, somente dos tipos Article e Review (mesmo critério das demais análises do grupo).
 - Ano de referência utilizado no cálculo das citações: 2026.
+- Os dados de 2025 podem estar incompletos por causa do atraso de indexação da Scopus.
 - Linguagem de programação: Python.
 - Bibliotecas utilizadas: Pandas, NumPy e Matplotlib.
 

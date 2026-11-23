@@ -1,9 +1,9 @@
 Relação entre marcos científicos e crescimento da área
 
-A evolução das publicações científicas foi analisada por meio de duas tendências lineares, considerando os períodos de 2000 a 2013 e de 2014 a 2025. Essa divisão teve como objetivo verificar se houve mudanças no ritmo de crescimento da produção científica após o marco de 2014.
+A evolução das publicações científicas foi analisada separadamente nos períodos de 2000 a 2013 e de 2014 a 2025, para verificar se houve mudança no ritmo de crescimento da produção após o marco de 2014. Como o número de publicações após 2014 cresce em proporção ao que já existe, cada período foi ajustado por um modelo exponencial, que corresponde a uma reta quando o número de publicações é representado em escala logarítmica.
 
-No primeiro período, a inclinação da reta foi de 0,06 publicação por ano, com R² de 0,0531, indicando uma produção ainda reduzida e sem uma tendência linear de crescimento bem definida.
+No primeiro período, foram publicados 33 artigos, entre 0 e 6 por ano. O ajuste exponencial teve R² de 0,08, indicando uma produção reduzida e sem tendência de crescimento definida.
 
-Já no período de 2014 a 2025, a inclinação aumentou para 36,78 publicações por ano, com R² de 0,8412. Esse resultado indica um crescimento mais acentuado e uma tendência linear mais consistente da produção científica.
+No período de 2014 a 2025, foram publicados 1.807 artigos. O número de publicações cresceu cerca de 58% ao ano, o que corresponde a dobrar a cada 1,5 ano. O ajuste exponencial descreveu bem os dados, com R² de 0,984, bem acima do R² de 0,839 obtido com um ajuste linear, que subestima o crescimento nos anos mais recentes e prevê valores negativos no início do período. O valor de 2025 fica abaixo da curva ajustada, o que pode refletir o atraso de indexação da Scopus.
 
 Dessa forma, os resultados mostram uma mudança expressiva no ritmo de crescimento das publicações a partir de 2014. Entretanto, essa relação não permite afirmar que o marco científico desse ano foi o responsável pelo aumento, mas indica uma associação temporal entre esse período e a expansão da produção científica na área.
