@@ -5,6 +5,9 @@ __pycache__/
 # Respostas brutas da API Scopus (grandes e regeneráveis com coleta_scopus.py)
 **/dados/bruto*/
 
-# Os termos da API da Elsevier não permitem redistribuir os dados publicamente.
-# Se o repositório for PÚBLICO, descomente a linha abaixo para não enviar os CSVs:
-# Odeilson/coleta/dados/*.csv
+# Dados da Scopus por artigo: os termos de uso da Elsevier não permitem
+# redistribuí-los publicamente. Ficam só nas máquinas do grupo.
+# A base é gerada com: python Odeilson/coleta/coleta_scopus.py
+dados/artigos_scopus*.csv
+Mariane/Analise_Bibliometrica/resultados/impacto_por_artigo.csv
+Mariane/Analise_Bibliometrica/resultados/top20_impacto.csv
