@@ -11,12 +11,6 @@ pasta_resultados = os.path.join(pasta_julio, "resultados")
 
 os.makedirs(pasta_resultados, exist_ok=True)
 
-juntar_paises = {
-    "Hong Kong": "China",
-    "Macao": "China",
-    "French Polynesia": "France"
-}
-
 scopus = pd.read_csv(arquivo_scopus, encoding="utf-8-sig")
 scopus = scopus[scopus["tipo_doc"].isin(["Article", "Review"])].copy()
 scopus["ano"] = pd.to_numeric(scopus["ano"], errors="coerce")
@@ -33,7 +27,7 @@ scopus["tem_financiamento"] = (
     .any(axis=1)
 )
 scopus["lista_paises"] = scopus["paises"].fillna("").apply(
-    lambda s: sorted({juntar_paises.get(p.strip(), p.strip()) for p in str(s).split(";") if p.strip()})
+    lambda s: sorted({p.strip() for p in str(s).split(";") if p.strip()})
 )
 
 por_pais = scopus.explode("lista_paises").dropna(subset=["lista_paises"]).rename(columns={"lista_paises": "pais"})
@@ -46,8 +40,6 @@ impacto = por_pais.groupby("pais").agg(
 financiamento = por_pais.groupby("pais")["tem_financiamento"].mean().mul(100).round(1).reset_index(name="porcentagem_financiada")
 
 total_pais = pd.read_csv(arquivo_total_pais, encoding="utf-8-sig")
-total_pais["pais"] = total_pais["pais"].replace(juntar_paises)
-total_pais = total_pais.groupby("pais", as_index=False)["total_scopus_2000_2025"].sum()
 
 # junta todas as tabelas pelo nome do país
 dados = pd.merge(volume, impacto, on="pais")
@@ -88,10 +80,11 @@ print(dados[["pais", "total_artigos", "artigos_por_100k", "impacto_norm_ano", "p
 
 # gráfico 1: bruto vs normalizado (cores fixas pros principais países)
 cores_destaque = {
-    "China": "red",
-    "Singapore": "green",
-    "South Korea": "orange",
-    "United States": "steelblue"
+    "China": "#c0392b",
+    "Hong Kong": "#8e44ad",
+    "Singapore": "#2e8b57",
+    "South Korea": "#e67e22",
+    "United States": "#2980b9"
 }
 
 top10_bruto = dados.head(10).sort_values("total_artigos", ascending=True)
@@ -104,14 +97,14 @@ for pais in top10_bruto["pais"]:
     if pais in cores_destaque:
         cores_bruto.append(cores_destaque[pais])
     else:
-        cores_bruto.append("gray")
+        cores_bruto.append("#95a5a6")
 
 cores_norm = []
 for pais in top10_norm["pais"]:
     if pais in cores_destaque:
         cores_norm.append(cores_destaque[pais])
     else:
-        cores_norm.append("gray")
+        cores_norm.append("#95a5a6")
 
 fig1, eixos1 = plt.subplots(1, 2, figsize=(12, 5))
 
@@ -135,19 +128,20 @@ top10 = top10_bruto
 
 fig2, eixos2 = plt.subplots(1, 3, figsize=(12, 5), sharey=True)
 
-eixos2[0].barh(top10["pais"], top10["total_artigos"], color="steelblue")
+eixos2[0].barh(top10["pais"], top10["total_artigos"], color="#2b6cb0")
 eixos2[0].set_title("Quantidade de artigos")
 eixos2[0].set_xlabel("Total de artigos")
 eixos2[0].grid(axis="x", alpha=0.3)
 
-eixos2[1].barh(top10["pais"], top10["impacto_norm_ano"], color="orange")
-eixos2[1].axvline(1.0, color="red", linestyle="--", linewidth=1.4, label="Média da área (1,0)")
+eixos2[1].barh(top10["pais"], top10["impacto_norm_ano"], color="#dd6b20")
+eixos2[1].axvline(1.0, color="#c53030", linestyle="--", linewidth=1.4, label="Média da área (1,0)")
 eixos2[1].set_title("Impacto normalizado (estilo FWCI)")
 eixos2[1].set_xlabel("Razão em relação à média do ano")
-eixos2[1].legend()
+eixos2[1].set_xlim(0, 2.15)
+eixos2[1].legend(loc="upper right")
 eixos2[1].grid(axis="x", alpha=0.3)
 
-eixos2[2].barh(top10["pais"], top10["porcentagem_financiada"], color="green")
+eixos2[2].barh(top10["pais"], top10["porcentagem_financiada"], color="#2f855a")
 eixos2[2].set_title("Artigos com financiamento")
 eixos2[2].set_xlabel("Porcentagem (%)")
 eixos2[2].set_xlim(0, 100)
