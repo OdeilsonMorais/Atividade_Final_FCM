@@ -22,7 +22,7 @@ TIPOS = ["Article", "Review"]
 MARCO = 2014
 
 BASE = Path(__file__).resolve().parent
-DADOS = BASE.parent / "coleta" / "dados"
+DADOS = BASE.parent.parent / "dados" 
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--busca", default="A", help="A (original) ou G (ampliada)")
