@@ -23,6 +23,8 @@ scopus["ano"] = pd.to_numeric(scopus["ano"], errors="coerce")
 scopus["citacoes"] = pd.to_numeric(scopus["citacoes"], errors="coerce")
 scopus = scopus.dropna(subset=["ano", "citacoes"]).copy()
 scopus["citacoes_por_ano"] = scopus["citacoes"] / (2026 - scopus["ano"])
+media_ano = scopus.groupby("ano")["citacoes"].transform("mean")
+scopus["impacto_norm_ano"] = scopus["citacoes"] / media_ano.replace(0, float("nan"))
 scopus["tem_financiamento"] = (
     scopus[["fund_sponsor", "fund_acr", "fund_no"]]
     .fillna("")
@@ -37,7 +39,10 @@ scopus["lista_paises"] = scopus["paises"].fillna("").apply(
 por_pais = scopus.explode("lista_paises").dropna(subset=["lista_paises"]).rename(columns={"lista_paises": "pais"})
 
 volume = por_pais.groupby("pais")["eid"].nunique().reset_index(name="total_artigos")
-impacto = por_pais.groupby("pais")["citacoes_por_ano"].mean().reset_index()
+impacto = por_pais.groupby("pais").agg(
+    citacoes_por_ano=("citacoes_por_ano", "mean"),
+    impacto_norm_ano=("impacto_norm_ano", "mean")
+).reset_index()
 financiamento = por_pais.groupby("pais")["tem_financiamento"].mean().mul(100).round(1).reset_index(name="porcentagem_financiada")
 
 total_pais = pd.read_csv(arquivo_total_pais, encoding="utf-8-sig")
@@ -54,10 +59,10 @@ dados["artigos_por_100k"] = dados["total_artigos"] / dados["total_scopus_2000_20
 dados = dados[dados["total_artigos"] >= 10]
 dados = dados.sort_values("total_artigos", ascending=False).reset_index(drop=True)
 
-corr_vol_impacto = dados["total_artigos"].corr(dados["citacoes_por_ano"], method="spearman")
+corr_vol_impacto = dados["total_artigos"].corr(dados["impacto_norm_ano"], method="spearman")
 
 lider_volume = dados["pais"].iloc[0]
-lider_impacto = dados.sort_values("citacoes_por_ano", ascending=False)["pais"].iloc[0]
+lider_impacto = dados.sort_values("impacto_norm_ano", ascending=False)["pais"].iloc[0]
 lider_normalizado = dados.sort_values("artigos_por_100k", ascending=False)["pais"].iloc[0]
 
 tem_financiamento = dados["porcentagem_financiada"].max() > 0
@@ -71,15 +76,15 @@ else:
 print("Resultado da hipótese 2:")
 print("1o lugar em volume:", lider_volume)
 print("1o lugar em foco relativo (por 100 mil):", lider_normalizado)
-print("1o lugar em citações por ano:", lider_impacto)
+print("1o lugar em impacto normalizado (FWCI):", lider_impacto)
 print("1o lugar em financiamento:", lider_financiamento)
-print(f"Correlação volume x citações: {corr_vol_impacto:.2f}")
+print(f"Correlação volume x impacto normalizado: {corr_vol_impacto:.2f}")
 
 if tem_financiamento:
     print(f"Correlação volume x financiamento: {corr_vol_financiamento:.2f}")
 
 print("")
-print(dados[["pais", "total_artigos", "artigos_por_100k", "citacoes_por_ano", "porcentagem_financiada"]].head(10))
+print(dados[["pais", "total_artigos", "artigos_por_100k", "impacto_norm_ano", "porcentagem_financiada"]].head(10))
 
 # gráfico 1: bruto vs normalizado (cores fixas pros principais países)
 cores_destaque = {
@@ -122,7 +127,7 @@ eixos1[1].grid(axis="x", alpha=0.3)
 
 fig1.suptitle("Volume bruto vs. foco relativo por país", fontsize=11.5)
 plt.tight_layout()
-plt.savefig(pasta_resultados + "/fig_bruto_vs_normalizado.png", dpi=300)
+plt.savefig(os.path.join(pasta_resultados, "fig_bruto_vs_normalizado.png"), dpi=300)
 plt.close()
 
 # gráfico 2: comparação geral (volume, impacto e financiamento)
@@ -135,9 +140,11 @@ eixos2[0].set_title("Quantidade de artigos")
 eixos2[0].set_xlabel("Total de artigos")
 eixos2[0].grid(axis="x", alpha=0.3)
 
-eixos2[1].barh(top10["pais"], top10["citacoes_por_ano"], color="orange")
-eixos2[1].set_title("Impacto (citações por ano)")
-eixos2[1].set_xlabel("Média de citações/ano")
+eixos2[1].barh(top10["pais"], top10["impacto_norm_ano"], color="orange")
+eixos2[1].axvline(1.0, color="red", linestyle="--", linewidth=1.4, label="Média da área (1,0)")
+eixos2[1].set_title("Impacto normalizado (estilo FWCI)")
+eixos2[1].set_xlabel("Razão em relação à média do ano")
+eixos2[1].legend()
 eixos2[1].grid(axis="x", alpha=0.3)
 
 eixos2[2].barh(top10["pais"], top10["porcentagem_financiada"], color="green")
@@ -151,5 +158,5 @@ if not tem_financiamento:
 
 fig2.suptitle("Comparação dos 10 países que mais publicam: volume, impacto e financiamento", fontsize=12)
 plt.tight_layout()
-plt.savefig(pasta_resultados + "/fig_sintese_hipotese2.png", dpi=300)
+plt.savefig(os.path.join(pasta_resultados, "fig_sintese_hipotese2.png"), dpi=300)
 plt.close()
