@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+
+# Respostas brutas da API Scopus (grandes e regeneráveis com coleta_scopus.py)
+**/dados/bruto*/
+
+# Os termos da API da Elsevier não permitem redistribuir os dados publicamente.
+# Se o repositório for PÚBLICO, descomente a linha abaixo para não enviar os CSVs:
+# Odeilson/coleta/dados/*.csv

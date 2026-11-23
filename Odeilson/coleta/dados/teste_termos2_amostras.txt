@@ -1,0 +1,54 @@
+
+=== F_atual+antigos_sem_sky (pré-2014, 25 mais citados) ===
+2013  1196  Ultrabroadband photonic structures to achieve high-performance daytime radiative cooling  |  Nano Letters
+2010  470  Radiative heat pumping from the Earth using surface phonon resonant nanoparticles  |  Nano Letters
+2013  212  Color-preserving daytime radiative cooling  |  Applied Physics Letters
+2012  120  Cooling performance of nocturnal radiative cooling combined with microencapsulated phase change material (MPCM) slurry storage  |  Energy and Buildings
+2003  113  Design, construction and test run of a solid adsorption solar refrigerator using activated carbon/methanol, as adsorbent/adsorbate pair  |  Energy Conversion and Management
+2010  99  Investigation of a hybrid system of nocturnal radiative cooling and direct evaporative cooling  |  Building and Environment
+2011  96  Planck early results. II. The thermal performance of Planck  |  Astronomy and Astrophysics
+2006  86  Application of passive radiative cooling for dew condensation  |  Energy
+2010  75  A two-stage system of nocturnal radiative and indirect evaporative cooling for conditions in Tehran  |  Energy and Buildings
+2012  61  Maximum urban heat island intensity in a medium-sized coastal Mediterranean city  |  Theoretical and Applied Climatology
+2000  56  Deposition of tellurium films by decomposition of electrochemically-generated H2Te: application to radiative cooling devices  |  Thin Solid Films
+2012  55  An experimental and analytical study of a radiative cooling system with unglazed flat plate collectors  |  International Journal of Green Energy
+2012  49  Increasing effectiveness of evaporative cooling by pre-cooling using nocturnally stored water  |  Applied Thermal Engineering
+2001  35  Advanced energy-efficient house (HARBEMAN house) with solar thermal, photovoltaic, and sky radiation energies (Experimental results)  |  Solar Energy
+2010  32  Cloud albedo increase from carbonaceous aerosol  |  Atmospheric Chemistry and Physics
+2006  32  Status of aqua MODIS spatial characterization and performance  |  Proceedings of SPIE the International Society for Optical Engineering
+2005  32  Radiative properties of cadmium telluride thin film as radiative cooling materials  |  Optics Communications
+2005  32  Thermal modelling of a night sky radiation cooling system  |  Journal of Energy in Southern Africa
+2010  30  Review of nocturnal cooling systems  |  International Journal of Energy for A Clean Environment
+2001  27  Estimation of effective thermal property parameter on a heterogeneous urban surface  |  Journal of the Meteorological Society of Japan
+2013  25  Desiccant enhanced nocturnal radiative cooling-solar collector system for air comfort application in hot arid areas  |  Sustainable Energy Technologies and Assessments
+2007  24  An investigation into the use of a wind shield to reduce the convective heat flux to a nocturnal radiative cooling surface  |  Renewable Energy
+2002  23  Microstructure and optical properties of silicon nitride thin films as radiative cooling materials  |  Solar Energy
+2000  22  The effects of the island of Hawaii on offshore rainband evolution  |  Monthly Weather Review
+2013  18  Fabrication of radiative cooling materials based on Si2N 2O particles by the nitridation of mixtures of silicon and silicon dioxide powders  |  Journal of the Ceramic Society of Japan
+
+=== G_F_sem_ruido (pré-2014, 25 mais citados) ===
+2013  1196  Ultrabroadband photonic structures to achieve high-performance daytime radiative cooling  |  Nano Letters
+2010  470  Radiative heat pumping from the Earth using surface phonon resonant nanoparticles  |  Nano Letters
+2013  212  Color-preserving daytime radiative cooling  |  Applied Physics Letters
+2012  120  Cooling performance of nocturnal radiative cooling combined with microencapsulated phase change material (MPCM) slurry storage  |  Energy and Buildings
+2003  113  Design, construction and test run of a solid adsorption solar refrigerator using activated carbon/methanol, as adsorbent/adsorbate pair  |  Energy Conversion and Management
+2010  99  Investigation of a hybrid system of nocturnal radiative cooling and direct evaporative cooling  |  Building and Environment
+2006  86  Application of passive radiative cooling for dew condensation  |  Energy
+2010  75  A two-stage system of nocturnal radiative and indirect evaporative cooling for conditions in Tehran  |  Energy and Buildings
+2000  56  Deposition of tellurium films by decomposition of electrochemically-generated H2Te: application to radiative cooling devices  |  Thin Solid Films
+2012  49  Increasing effectiveness of evaporative cooling by pre-cooling using nocturnally stored water  |  Applied Thermal Engineering
+2001  35  Advanced energy-efficient house (HARBEMAN house) with solar thermal, photovoltaic, and sky radiation energies (Experimental results)  |  Solar Energy
+2005  32  Radiative properties of cadmium telluride thin film as radiative cooling materials  |  Optics Communications
+2005  32  Thermal modelling of a night sky radiation cooling system  |  Journal of Energy in Southern Africa
+2010  30  Review of nocturnal cooling systems  |  International Journal of Energy for A Clean Environment
+2001  27  Estimation of effective thermal property parameter on a heterogeneous urban surface  |  Journal of the Meteorological Society of Japan
+2013  25  Desiccant enhanced nocturnal radiative cooling-solar collector system for air comfort application in hot arid areas  |  Sustainable Energy Technologies and Assessments
+2007  24  An investigation into the use of a wind shield to reduce the convective heat flux to a nocturnal radiative cooling surface  |  Renewable Energy
+2000  22  The effects of the island of Hawaii on offshore rainband evolution  |  Monthly Weather Review
+2013  18  Fabrication of radiative cooling materials based on Si2N 2O particles by the nitridation of mixtures of silicon and silicon dioxide powders  |  Journal of the Ceramic Society of Japan
+2011  17  Thermal radiation control by surface gratings as an advanced cooling system for electronic devices  |  Journal of Thermal Science and Technology
+2009  14  Stainless steel/tin/glass coating as spectrally selective material for passive radiative cooling applications  |  Optical Materials
+2011  9  Enhancing the heat transfer in energy systems from a volumetric approach  |  ASME JSME 2011 8th Thermal Engineering Joint Conference Ajtec 2011
+2012  7  Design, construction and calibration of an instrument for measuring the production of chilled water by the combined effects of evaporation and night sky radiation  |  ASME International Mechanical Engineering Congress and Exposition Proceedings Imece
+2009  6  Modeling, testing, and evaluation of a building-integrated photovoltaic-thermal collector  |  Proceedings of the ASME 3rd International Conference on Energy Sustainability 2009 Es2009
+2012  6  Seasonal coolth storage system for residential buildings in Australia  |  Journal of Central South University of Technology English Edition
