@@ -2,15 +2,19 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-arquivo_scopus = ""
-arquivo_total_mundo = ""
-pasta_resultados = ""
+pasta_julio = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+pasta_projeto = os.path.dirname(pasta_julio)
+
+arquivo_scopus = os.path.join(pasta_projeto, "dados", "artigos_scopus_G.csv")
+arquivo_total_mundo = os.path.join(pasta_projeto, "dados", "total_scopus_por_ano.csv")
+pasta_resultados = os.path.join(pasta_julio, "resultados")
 
 os.makedirs(pasta_resultados, exist_ok=True)
 
-tabela = pd.read_csv(arquivo_scopus)
-total_mundo = pd.read_csv(arquivo_total_mundo)
+tabela = pd.read_csv(arquivo_scopus, encoding="utf-8-sig")
+total_mundo = pd.read_csv(arquivo_total_mundo, encoding="utf-8-sig")
 
+tabela = tabela[tabela["tipo_doc"].isin(["Article", "Review"])]
 tabela = tabela[(tabela["ano"] >= 2000) & (tabela["ano"] <= 2025)]
 
 # conta quantos artigos saíram em cada ano

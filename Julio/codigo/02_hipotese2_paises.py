@@ -2,18 +2,47 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-arquivo_volume = ""
-arquivo_impacto = ""
-arquivo_financiamento = ""
-arquivo_total_pais = ""
-pasta_resultados = ""
+pasta_julio = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+pasta_projeto = os.path.dirname(pasta_julio)
+
+arquivo_scopus = os.path.join(pasta_projeto, "dados", "artigos_scopus_G.csv")
+arquivo_total_pais = os.path.join(pasta_projeto, "dados", "total_scopus_por_pais.csv")
+pasta_resultados = os.path.join(pasta_julio, "resultados")
 
 os.makedirs(pasta_resultados, exist_ok=True)
 
-volume = pd.read_csv(arquivo_volume)
-impacto = pd.read_csv(arquivo_impacto)
-financiamento = pd.read_csv(arquivo_financiamento)
-total_pais = pd.read_csv(arquivo_total_pais)
+juntar_paises = {
+    "Hong Kong": "China",
+    "Macao": "China",
+    "French Polynesia": "France"
+}
+
+scopus = pd.read_csv(arquivo_scopus, encoding="utf-8-sig")
+scopus = scopus[scopus["tipo_doc"].isin(["Article", "Review"])].copy()
+scopus["ano"] = pd.to_numeric(scopus["ano"], errors="coerce")
+scopus["citacoes"] = pd.to_numeric(scopus["citacoes"], errors="coerce")
+scopus = scopus.dropna(subset=["ano", "citacoes"]).copy()
+scopus["citacoes_por_ano"] = scopus["citacoes"] / (2026 - scopus["ano"])
+scopus["tem_financiamento"] = (
+    scopus[["fund_sponsor", "fund_acr", "fund_no"]]
+    .fillna("")
+    .astype(str)
+    .apply(lambda col: col.str.strip().ne(""))
+    .any(axis=1)
+)
+scopus["lista_paises"] = scopus["paises"].fillna("").apply(
+    lambda s: sorted({juntar_paises.get(p.strip(), p.strip()) for p in str(s).split(";") if p.strip()})
+)
+
+por_pais = scopus.explode("lista_paises").dropna(subset=["lista_paises"]).rename(columns={"lista_paises": "pais"})
+
+volume = por_pais.groupby("pais")["eid"].nunique().reset_index(name="total_artigos")
+impacto = por_pais.groupby("pais")["citacoes_por_ano"].mean().reset_index()
+financiamento = por_pais.groupby("pais")["tem_financiamento"].mean().mul(100).round(1).reset_index(name="porcentagem_financiada")
+
+total_pais = pd.read_csv(arquivo_total_pais, encoding="utf-8-sig")
+total_pais["pais"] = total_pais["pais"].replace(juntar_paises)
+total_pais = total_pais.groupby("pais", as_index=False)["total_scopus_2000_2025"].sum()
 
 # junta todas as tabelas pelo nome do país
 dados = pd.merge(volume, impacto, on="pais")
@@ -22,6 +51,7 @@ dados = pd.merge(dados, total_pais, on="pais", how="left")
 
 # normaliza pelo total de publicações de cada país na Scopus
 dados["artigos_por_100k"] = dados["total_artigos"] / dados["total_scopus_2000_2025"] * 100000
+dados = dados[dados["total_artigos"] >= 10]
 dados = dados.sort_values("total_artigos", ascending=False).reset_index(drop=True)
 
 corr_vol_impacto = dados["total_artigos"].corr(dados["citacoes_por_ano"], method="spearman")
