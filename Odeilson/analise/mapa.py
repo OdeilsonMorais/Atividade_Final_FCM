@@ -6,8 +6,8 @@ os botões alternam entre o total e os dois períodos.
 Lê os CSVs da pasta ../coleta/dados.
 
 Uso:
-    python mapa.py              # busca A -> figuras/mapa_publicacoes.html
-    python mapa.py --busca G    # busca G -> figuras/mapa_publicacoes_G.html
+    python mapa.py              # busca G -> figuras/mapa_publicacoes_G.html
+    python mapa.py --busca A    # busca A -> figuras/mapa_publicacoes.html (precisa de dados/artigos_scopus.csv)
 """
 
 import argparse
@@ -25,7 +25,7 @@ BASE = Path(__file__).resolve().parent
 DADOS = BASE.parent.parent / "dados" 
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--busca", default="A", help="A (original) ou G (ampliada)")
+ap.add_argument("--busca", default="G", help="G (ampliada, padrão) ou A (original)")
 args = ap.parse_args()
 sufixo = "" if args.busca == "A" else f"_{args.busca}"
 args.rotulo = "" if args.busca == "A" else f"busca {args.busca}"

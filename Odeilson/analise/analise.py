@@ -5,8 +5,8 @@ Distribuição geográfica da produção sobre resfriamento radiativo passivo
 Lê os CSVs da pasta ../coleta/dados.
 
 Uso:
-    python analise.py             # busca A
-    python analise.py --busca G   # busca G
+    python analise.py             # busca G (base do grupo, dados/artigos_scopus_G.csv)
+    python analise.py --busca A   # busca A (precisa de dados/artigos_scopus.csv)
 
 Saídas: resultados/2_paises_por_periodo[_G].csv e figuras/2_paises_por_periodo[_G].png
 
@@ -35,7 +35,7 @@ BASE = Path(__file__).resolve().parent
 DADOS = BASE.parent.parent / "dados"    
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--busca", default="A", help="A (original) ou G (ampliada)")
+ap.add_argument("--busca", default="G", help="G (ampliada, padrão) ou A (original)")
 args = ap.parse_args()
 args.sufixo = "" if args.busca == "A" else f"_{args.busca}"
 arq = DADOS / f"artigos_scopus{args.sufixo}.csv"

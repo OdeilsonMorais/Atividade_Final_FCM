@@ -5,7 +5,8 @@ sobre resfriamento radiativo passivo (2000-2025).
 Uso:
     $env:SCOPUS_API_KEY = "sua_chave"          # https://dev.elsevier.com
     python coleta_scopus.py --contar            # só mostra quantos resultados a busca retorna
-    python coleta_scopus.py                     # baixa tudo -> dados/artigos_scopus.csv
+    python coleta_scopus.py                     # busca G -> dados/artigos_scopus_G.csv
+    python coleta_scopus.py --busca A           # busca A -> dados/artigos_scopus.csv
 """
 
 import argparse
@@ -109,8 +110,8 @@ def extrair(e):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--busca", choices=BUSCAS, default="A",
-                    help="busca pré-definida (A = original, G = ampliada)")
+    ap.add_argument("--busca", choices=BUSCAS, default="G",
+                    help="busca pré-definida (G = ampliada, padrão; A = original)")
     ap.add_argument("--query", help="query livre (substitui --busca)")
     ap.add_argument("--contar", action="store_true", help="só conta os resultados")
     ap.add_argument("--saida", help="CSV de saída (padrão: dados/artigos_scopus[_BUSCA].csv)")
