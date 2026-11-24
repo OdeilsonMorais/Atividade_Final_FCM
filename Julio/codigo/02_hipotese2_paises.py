@@ -123,10 +123,10 @@ plt.tight_layout()
 plt.savefig(os.path.join(pasta_resultados, "fig_bruto_vs_normalizado.png"), dpi=300)
 plt.close()
 
-# gráfico 2: comparação geral (volume, impacto e financiamento)
+# gráfico 2: comparação geral (volume e impacto)
 top10 = top10_bruto
 
-fig2, eixos2 = plt.subplots(1, 3, figsize=(12, 5), sharey=True)
+fig2, eixos2 = plt.subplots(1, 2, figsize=(11, 5), sharey=True)
 
 eixos2[0].barh(top10["pais"], top10["total_artigos"], color="#2b6cb0")
 eixos2[0].set_title("Quantidade de artigos")
@@ -141,16 +141,7 @@ eixos2[1].set_xlim(0, 2.15)
 eixos2[1].legend(loc="upper right")
 eixos2[1].grid(axis="x", alpha=0.3)
 
-eixos2[2].barh(top10["pais"], top10["porcentagem_financiada"], color="#2f855a")
-eixos2[2].set_title("Artigos com financiamento")
-eixos2[2].set_xlabel("Porcentagem (%)")
-eixos2[2].set_xlim(0, 100)
-eixos2[2].grid(axis="x", alpha=0.3)
-
-if not tem_financiamento:
-    eixos2[2].text(50, 4.5, "Vou tentar encaixar esse grafico \n com os dados q o gabriel tratar", ha="center", va="center", fontsize=10, color="gray")
-
-fig2.suptitle("Comparação dos 10 países que mais publicam: volume, impacto e financiamento", fontsize=12)
+fig2.suptitle("Comparação dos 10 países que mais publicam: volume e impacto", fontsize=12)
 plt.tight_layout()
 plt.savefig(os.path.join(pasta_resultados, "fig_sintese_hipotese2.png"), dpi=300)
 plt.close()
