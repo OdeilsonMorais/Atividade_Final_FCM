@@ -120,7 +120,7 @@ eixos1[1].grid(axis="x", alpha=0.3)
 
 fig1.suptitle("Volume bruto vs. foco relativo por país", fontsize=11.5)
 plt.tight_layout()
-plt.savefig(os.path.join(pasta_resultados, "fig_bruto_vs_normalizado.png"), dpi=300)
+plt.savefig(os.path.join(pasta_resultados, "fig_bruto_vs_normalizado.png"), dpi=300, transparent=True)
 plt.close()
 
 # gráfico 2: comparação geral (volume e impacto)
@@ -143,5 +143,5 @@ eixos2[1].grid(axis="x", alpha=0.3)
 
 fig2.suptitle("Comparação dos 10 países que mais publicam: volume e impacto", fontsize=12)
 plt.tight_layout()
-plt.savefig(os.path.join(pasta_resultados, "fig_sintese_hipotese2.png"), dpi=300)
+plt.savefig(os.path.join(pasta_resultados, "fig_sintese_hipotese2.png"), dpi=300, transparent=True)
 plt.close()

@@ -76,5 +76,5 @@ eixos[2].grid(True, alpha=0.3)
 
 fig.suptitle("Evolução das publicações sobre resfriamento radiativo passivo vs. crescimento geral da Scopus (2000-2025)", fontsize=12)
 plt.tight_layout()
-plt.savefig(os.path.join(pasta_resultados, "fig_evolucao_temporal.png"), dpi=300)
+plt.savefig(os.path.join(pasta_resultados, "fig_evolucao_temporal.png"), dpi=300, transparent=True)
 plt.close()
